@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import SecretMessage from './components/SecretMessage/SecretMessage';
+import { useState } from 'react';
 
 function App() {
+
+  const [disableButton, setDisableButton] = useState(false);
+  const [secretOpacity, setSecretOpacity] = useState({opacity: 0.0});
+
+  const secretMessage = 'This is a secret message...';
+
+  const showSecretHandler = () =>{
+      setDisableButton(true);
+      setSecretOpacity({opacity:1});
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <SecretMessage secretMessage={secretMessage} opacity={secretOpacity}/>
+      <button onClick={showSecretHandler} disabled={disableButton}>Show secret</button>
+    </>
   );
 }
 
